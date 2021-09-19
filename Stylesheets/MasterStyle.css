@@ -1,0 +1,126 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url("../Foto's/Achtergrond.png");
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#LoginBar {
+    background-color: #000;
+    Height: 29px;
+    margin: 0 auto;
+}
+
+.Home {
+    padding: 5px;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    left: 230px;
+    height: 100%;
+    text-decoration: none;
+    top: 3px;
+}
+
+    .Home:hover {
+        background-image: url("../Foto's/Footer.png");
+        color: black;
+    }
+
+.Log {
+    color: white;
+    position: relative;
+    top: 5px;
+    right: 200px;
+    float: right;
+    text-decoration: none;
+}
+
+    .Log:hover {
+        color: gray;
+    }
+
+    .streep {
+    color: white;
+    position: relative;
+    top: 5px;
+    right: 200px;
+    float: right;
+    text-decoration: none;
+}
+
+#LogoBar {
+    Height: 125px;
+    width: 100%;
+    background-image: url("../Foto's/Footer.png");
+}
+
+nav {
+    background-color: white;
+    Height: 35px;
+    border-bottom-width: 2px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-top-width: 2px;
+    border-top-color: black;
+    border-top-style: solid;
+    padding: 0px 0px 0px 150px;
+}
+
+    nav ul {
+        list-style-type: none;
+        display: none;
+    }
+
+    nav li {
+        float: left;
+        display: block;
+        margin-top: 5px;
+        padding: 0px 0px 0px 80px;
+    }
+
+#Navigatie {
+    display: block;
+    list-style-type: none;
+    text-align: center;
+}
+
+    #Navigatie a {
+        font-size: 22px;
+        color: Black;
+        position: relative;
+        text-decoration: none;
+    }
+
+        #Navigatie a:hover {
+            text-decoration: underline;
+        }
+
+footer {
+    background-image: url("../Foto's/Footer.png");
+    box-sizing: border-box;
+    height: 110px;
+    padding: 30px 60px;
+    margin-top: 10%;
+    overflow: hidden;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+}
+
+    footer .links a {
+        text-decoration: none;
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+#content {
+    min-height:300px;
+}

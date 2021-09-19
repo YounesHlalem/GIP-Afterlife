@@ -1,0 +1,153 @@
+﻿.wrapper {
+    padding: 20px 0px 0px 0px;
+}
+
+.inhoud {
+    background-image: url("../Foto's/Design2.png");
+    width: 700px;
+    padding: 25px 10px 25px 60px;
+    border-radius: 10px;
+    position: relative;
+    left: 250px;
+}
+
+.btnImage {
+    width: 130px;
+    height: 130px;
+    border-radius: 15px;
+}
+
+.lnkDelete {
+    text-decoration: underline;
+    text-transform:uppercase;
+    color: black;
+    text-align:right;
+}
+.lnkDelete:hover {
+    text-decoration: none;
+}
+
+.lblTitel {
+    font-size: 25px;
+}
+
+.CartTable {
+    background-image: url("../Foto's/Design.png");
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.txtContact {
+    width: 500px;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    padding: 0 10px 0 10px;
+    outline: none;
+}
+
+.contactlabels {
+    color: #000;
+    font-size: 23px;
+}
+
+.Contactbtn {
+    background: #1C1C1C;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 3px solid #000;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    padding: 0px;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+}
+
+.Contactbtn:hover {
+    background: #303030;
+}
+
+.lblReageer {
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.lblGastenb {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.berichtaanmaak {
+    padding: 10px 10px 10px 10px;
+}
+
+.lblNaam {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.lblMail {
+    font-size: 13px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.lblDatum {
+    font-size: 12px;
+    opacity: 0.8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.lblBericht {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.gastenlayout {
+    width: 700px;
+    padding: 25px 10px 25px 60px;
+    border-radius: 10px;
+    background-color: #EBEBEB;
+    position:relative;
+    left: 250px;
+    top: 10px;
+}
+
+.ZoekerFoto {
+    width: 150px;
+    height: 150px;
+}
+
+.ZoekerTitel {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ZoekerPrijs {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.indexlayout {
+    padding: 10px 10px 10px 10px;
+}
+
+.lblindexTitel {
+    font-size: 22px;
+}
+
+.lblindexPrijs {
+    font-size: 16px;
+}

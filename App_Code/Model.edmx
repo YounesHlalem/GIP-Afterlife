@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AfterlifeDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Afdeling">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Afdeling" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bestelling">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GebruikerID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZoekerID" Type="int" Nullable="false" />
+          <Property Name="Hoeveelheid" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="datetime" />
+          <Property Name="IsBesteld" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Onderwerp" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Bericht" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Datum" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Gastenboek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Bericht" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plaatsing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AfdelingID" Type="int" Nullable="false" />
+          <Property Name="Titel" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Prijs" Type="int" Nullable="false" />
+          <Property Name="Beschrijving" Type="text" Nullable="false" />
+          <Property Name="Foto" Type="varchar" MaxLength="150" />
+          <Property Name="Voornaam" Type="nvarchar" MaxLength="50" />
+          <Property Name="Achternaam" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="150" />
+          <Property Name="Postcode" Type="int" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Userinformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Voornaam" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Achternaam" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zoeker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AfdelingID" Type="int" Nullable="false" />
+          <Property Name="Titel" Type="varchar" MaxLength="100" />
+          <Property Name="Prijs" Type="int" />
+          <Property Name="Beschrijving" Type="text" />
+          <Property Name="Foto" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK_Bestelling_Zoeker">
+          <End Role="Zoeker" Type="Self.Zoeker" Multiplicity="1" />
+          <End Role="Bestelling" Type="Self.Bestelling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zoeker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bestelling">
+              <PropertyRef Name="ZoekerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zoeker_Afdeling">
+          <End Role="Afdeling" Type="Self.Afdeling" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Zoeker" Type="Self.Zoeker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afdeling">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zoeker">
+              <PropertyRef Name="AfdelingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AfterlifeDataBaseModelStoreContainer">
+          <EntitySet Name="Afdeling" EntityType="Self.Afdeling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bestelling" EntityType="Self.Bestelling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gastenboek" EntityType="Self.Gastenboek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plaatsing" EntityType="Self.Plaatsing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Userinformation" EntityType="Self.Userinformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zoeker" EntityType="Self.Zoeker" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bestelling_Zoeker" Association="Self.FK_Bestelling_Zoeker">
+            <End Role="Zoeker" EntitySet="Zoeker" />
+            <End Role="Bestelling" EntitySet="Bestelling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zoeker_Afdeling" Association="Self.FK_Zoeker_Afdeling">
+            <End Role="Afdeling" EntitySet="Afdeling" />
+            <End Role="Zoeker" EntitySet="Zoeker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AfterlifeDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Afdeling">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Afdeling1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Zoekers" Relationship="Self.FK_Zoeker_Afdeling" FromRole="Afdeling" ToRole="Zoeker" />
+        </EntityType>
+        <EntityType Name="Bestelling">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GebruikerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZoekerID" Type="Int32" Nullable="false" />
+          <Property Name="Hoeveelheid" Type="Int32" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <Property Name="IsBesteld" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zoeker" Relationship="Self.FK_Bestelling_Zoeker" FromRole="Bestelling" ToRole="Zoeker" />
+        </EntityType>
+        <EntityType Name="Zoeker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AfdelingID" Type="Int32" Nullable="false" />
+          <Property Name="Titel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Prijs" Type="Int32" />
+          <Property Name="Beschrijving" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Afdeling" Relationship="Self.FK_Zoeker_Afdeling" FromRole="Zoeker" ToRole="Afdeling" />
+          <NavigationProperty Name="Bestellings" Relationship="Self.FK_Bestelling_Zoeker" FromRole="Zoeker" ToRole="Bestelling" />
+        </EntityType>
+        <Association Name="FK_Zoeker_Afdeling">
+          <End Role="Afdeling" Type="Self.Afdeling" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Zoeker" Type="Self.Zoeker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afdeling">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zoeker">
+              <PropertyRef Name="AfdelingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bestelling_Zoeker">
+          <End Role="Zoeker" Type="Self.Zoeker" Multiplicity="1" />
+          <End Role="Bestelling" Type="Self.Bestelling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zoeker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bestelling">
+              <PropertyRef Name="ZoekerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AfterlifeDataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Afdelings" EntityType="Self.Afdeling" />
+          <EntitySet Name="Bestellings" EntityType="Self.Bestelling" />
+          <EntitySet Name="Zoekers" EntityType="Self.Zoeker" />
+          <AssociationSet Name="FK_Zoeker_Afdeling" Association="Self.FK_Zoeker_Afdeling">
+            <End Role="Afdeling" EntitySet="Afdelings" />
+            <End Role="Zoeker" EntitySet="Zoekers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bestelling_Zoeker" Association="Self.FK_Bestelling_Zoeker">
+            <End Role="Zoeker" EntitySet="Zoekers" />
+            <End Role="Bestelling" EntitySet="Bestellings" />
+          </AssociationSet>
+          <EntitySet Name="Userinformations" EntityType="AfterlifeDataBaseModel.Userinformation" />
+          <EntitySet Name="Gastenboeks" EntityType="AfterlifeDataBaseModel.Gastenboek" />
+          <EntitySet Name="Contacts" EntityType="AfterlifeDataBaseModel.Contact" />
+          <EntitySet Name="Plaatsings" EntityType="AfterlifeDataBaseModel.Plaatsing" />
+        </EntityContainer>
+        <EntityType Name="Userinformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Voornaam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Achternaam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Gastenboek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bericht" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Onderwerp" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Bericht" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Plaatsing">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AfdelingID" Type="Int32" Nullable="false" />
+          <Property Name="Titel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Prijs" Type="Int32" Nullable="false" />
+          <Property Name="Beschrijving" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Voornaam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Achternaam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="Int32" />
+          <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AfterlifeDataBaseModelStoreContainer" CdmEntityContainer="AfterlifeDataBaseEntities">
+          <EntitySetMapping Name="Afdelings">
+            <EntityTypeMapping TypeName="AfterlifeDataBaseModel.Afdeling">
+              <MappingFragment StoreEntitySet="Afdeling">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Afdeling1" ColumnName="Afdeling" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bestellings">
+            <EntityTypeMapping TypeName="AfterlifeDataBaseModel.Bestelling">
+              <MappingFragment StoreEntitySet="Bestelling">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="GebruikerID" ColumnName="GebruikerID" />
+                <ScalarProperty Name="ZoekerID" ColumnName="ZoekerID" />
+                <ScalarProperty Name="Hoeveelheid" ColumnName="Hoeveelheid" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="IsBesteld" ColumnName="IsBesteld" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zoekers">
+            <EntityTypeMapping TypeName="AfterlifeDataBaseModel.Zoeker">
+              <MappingFragment StoreEntitySet="Zoeker">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AfdelingID" ColumnName="AfdelingID" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="Prijs" ColumnName="Prijs" />
+                <ScalarProperty Name="Beschrijving" ColumnName="Beschrijving" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Userinformations">
+            <EntityTypeMapping TypeName="AfterlifeDataBaseModel.Userinformation">
+              <MappingFragment StoreEntitySet="Userinformation">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gastenboeks">
+            <EntityTypeMapping TypeName="AfterlifeDataBaseModel.Gastenboek">
+              <MappingFragment StoreEntitySet="Gastenboek">
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Bericht" ColumnName="Bericht" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="AfterlifeDataBaseModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Bericht" ColumnName="Bericht" />
+                <ScalarProperty Name="Onderwerp" ColumnName="Onderwerp" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plaatsings">
+            <EntityTypeMapping TypeName="AfterlifeDataBaseModel.Plaatsing">
+              <MappingFragment StoreEntitySet="Plaatsing">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Beschrijving" ColumnName="Beschrijving" />
+                <ScalarProperty Name="Prijs" ColumnName="Prijs" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="AfdelingID" ColumnName="AfdelingID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

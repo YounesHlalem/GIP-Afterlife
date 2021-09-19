@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d0d5e70f0dab40faac093ff55b61d765" Name="Diagram1">
+        <EntityTypeShape EntityType="AfterlifeDataBaseModel.Afdeling" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AfterlifeDataBaseModel.Bestelling" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AfterlifeDataBaseModel.Zoeker" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="AfterlifeDataBaseModel.FK_Zoeker_Afdeling" ManuallyRouted="false" />
+        <AssociationConnector Association="AfterlifeDataBaseModel.FK_Bestelling_Zoeker" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AfterlifeDataBaseModel.Userinformation" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="AfterlifeDataBaseModel.Gastenboek" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="AfterlifeDataBaseModel.Contact" Width="1.5" PointX="5.25" PointY="3.5" />
+        <EntityTypeShape EntityType="AfterlifeDataBaseModel.Plaatsing" Width="1.5" PointX="7.25" PointY="1.875" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
